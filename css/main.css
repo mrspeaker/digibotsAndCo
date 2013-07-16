@@ -1,0 +1,31 @@
+* { box-sizing: border-box }
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #111;
+}
+
+#board {
+	width: 640px;
+	height: 640px;
+	display: none;
+}
+
+#post {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+section {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	text-align: center;
+	overflow: hidden;
+}
+

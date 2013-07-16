@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Digibots &amp; co.</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<section>
+			<canvas id="post" width="650" height="650"></canvas>
+			<canvas id="board"></canvas>
+		</section>
+
+		<script>
+			// Flashing preloader!
+			var preloo = setInterval(function () {
+				document.querySelector("section").style.background = "hsl(" + (Math.random() * 360 | 0) + ", 50%, 40%)";
+			}, 600);
+		</script>
+
+		<script type="text/vertex-shader" id="vert-post">
+			attribute vec2 a_position;
+			varying vec2 v_texCoord;
+			void main(){
+				v_texCoord = a_position;
+				vec2 zeroToOne = a_position / 1.;
+				vec2 zeroToTwo = zeroToOne * 2.0;
+				vec2 clipSpace = zeroToTwo - 1.0;
+				gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
+			}
+		</script>
+
+		<script type="text/frag-shader" id="frag-post">
+			precision highp float;
+			uniform sampler2D u_image;
+			uniform float u_time;
+			uniform float points[4];
+			uniform int u_doGlitch;
+			varying vec2 v_texCoord;
+
+			vec2 lineSplitter (vec2 p, float lines, float intensity) {
+				float parity = 0.;
+				if(fract(p.y*lines)>0.5) parity=1.; else parity=-1.;
+				return vec2(p.x+parity*intensity, p.y);
+			}
+
+			void main(){
+
+				vec2 pos = u_doGlitch == 0 ? v_texCoord : lineSplitter(v_texCoord, 80., 0.01);
+
+				vec4 pix = texture2D(u_image, pos);//.bgra;
+
+				float tv_ray_size = cos(pos.y * 512. * 2.);
+				vec4 tv = (pix * 0.9) + (pix * tv_ray_size * 0.15);
+
+				float dist = smoothstep(0.68, 0.0, distance(pos, vec2(0.5,0.5)));
+				vec4 vignette = tv.rgba * (pow(dist, 0.2));
+
+				gl_FragColor = vignette;
+
+			}
+		</script>
+
+		<!-- lib files -->
+		<script src="lib/Ω/Ω.js"></script>
+		<script src="lib/Ω/utils/base.js"></script>
+		<script src="lib/Ω/utils/utils.js"></script>
+		<script src="lib/Ω/utils/rays.js"></script>
+		<script src="lib/Ω/utils/Timer.js"></script>
+		<script src="lib/Ω/gfx.js"></script>
+		<script src="lib/Ω/input.js"></script>
+		<script src="lib/Ω/assets/Image.js"></script>
+		<script src="lib/Ω/assets/Sound.js"></script>
+		<script src="lib/Ω/cameras/Camera.js"></script>
+		<script src="lib/Ω/cameras/TrackingCamera.js"></script>
+		<script src="lib/Ω/Physics.js"></script>
+		<script src="lib/Ω/effects/Particle.js"></script>
+		<script src="lib/Ω/effects/Spring.js"></script>
+		<script src="lib/Ω/effects/Shake.js"></script>
+		<script src="lib/Ω/screens/Screen.js"></script>
+		<script src="lib/Ω/screens/Dialog.js"></script>
+		<script src="lib/Ω/SpriteSheet.js"></script>
+		<script src="lib/Ω/anim/Anims.js"></script>
+		<script src="lib/Ω/anim/Anim.js"></script>
+		<script src="lib/Ω/maps/Map.js"></script>
+		<script src="lib/Ω/maps/IsoMap.js"></script>
+		<script src="lib/Ω/maps/RayCastMap.js"></script>
+		<script src="lib/Ω/entities/Entity.js"></script>
+		<script src="lib/Ω/Game.js"></script>
+
+		<!-- game files -->
+		<script src="scripts/data.js"></script>
+		<script src="scripts/enums.js"></script>
+		<script src="scripts/text/writer.js"></script>
+		<script src="scripts/text/font.js"></script>
+
+		<script src="scripts/blocks/blocks.js"></script>
+
+		<script src="scripts/entities/Workman.js"></script>
+		<script src="scripts/entities/GlitchMonster.js"></script>
+		<script src="scripts/entities/Key.js"></script>
+
+		<script src="scripts/machines/Machine.js"></script>
+		<script src="scripts/machines/Switch.js"></script>
+		<script src="scripts/machines/Door.js"></script>
+		<script src="scripts/machines/Elevator.js"></script>
+		<script src="scripts/machines/Spikes.js"></script>
+		<script src="scripts/machines/Teleport.js"></script>
+		<script src="scripts/entities/Portal.js"></script>
+
+		<script src="scripts/Player.js"></script>
+
+		<script src="scripts/screens/HiScoreScreen.js"></script>
+		<script src="scripts/screens/HiScoreEntryScreen.js"></script>
+		<script src="scripts/screens/LevelScreen.js"></script>
+		<script src="scripts/screens/LevelClearScreen.js"></script>
+		<script src="scripts/screens/TitleScreen.js"></script>
+		<script src="scripts/screens/IntroScreen.js"></script>
+		<script src="scripts/screens/EndScreen.js"></script>
+		<script src="scripts/screens/BootScreen.js"></script>
+
+		<script src="scripts/dialogs/PauseDialog.js"></script>
+		<script src="scripts/dialogs/ContinueDialog.js"></script>
+		<script src="scripts/dialogs/Popup.js"></script>
+
+		<script src="scripts/effects/Flash.js"></script>
+
+		<script src="scripts/levels/Tiled.js"></script>
+		<script src="scripts/levels/Loader.js"></script>
+		<script src="scripts/levels/Level.js"></script>
+
+		<script src="scripts/BuildNCrypt.js"></script>
+
+		<script>
+
+			var game = new BuildNCrypt(30 * 16, 30 * 16);
+
+		</script>
+	</body>
+</html>
