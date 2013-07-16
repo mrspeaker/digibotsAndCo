@@ -1,14 +1,16 @@
 # Digibots & co.
 
 By Mr Speaker
-for the french "No Future Contest".
 
-Move: stick / keys
-Build: button 1 / space
-Erase: button 2 / x
-Fast: both buttons
+Canvas & WebGL game for the french "No Future Contest" with my chosen constraint, "tous les programmeurs sont morts (le jeu doit exploiter le concept/l’esthétique du bug/glitch)".
 
-next up:
+    Move: stick / keys
+    Build: button 1 / space
+    Erase: button 2 / x
+    Fast: both buttons
+
+
+## Notes to self...
 
 - add "goodtime" to levels
 - build min js.
@@ -28,7 +30,6 @@ next up:
 
 ## Ideaz
 
-- hard level - have to drop player out of bottom of screen, so it wraps 'round!
 - panic mode: click on player, makes them idle
 - glitch in time to the moosic.
 
