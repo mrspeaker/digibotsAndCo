@@ -1,5 +1,8 @@
 # Digibots & co.
 
+By Mr Speaker
+for the french "No Future Contest".
+
 Move: stick / keys
 Build: button 1 / space
 Erase: button 2 / x
@@ -7,15 +10,7 @@ Fast: both buttons
 
 next up:
 
-- choose level time
 - add "goodtime" to levels
-- add glitch amount to levels
-
-- spikes level
-- switch level
-- wrap around from top level
-- crazy spawner level
-
 - build min js.
 
 ## If I'm really bored
@@ -38,6 +33,8 @@ next up:
 - glitch in time to the moosic.
 
 ## Add back to Ω
+
+Add these changes back to my Ω500 framework/library thing
 
 - utils.neighbours
 - convert Physics class to helper methods
