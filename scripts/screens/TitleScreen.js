@@ -98,7 +98,7 @@
             this.font.write(gfx, data.lang.get("keys-erase").split(".")[1], 18 * 16, 24 * 16, 0);
 
             this.font.write(gfx, data.lang.get("keys-both").split(".")[0], 6 * 16, 26 * 16, 1);
-            this.font.write(gfx, data.lang.get("keys-both").split(".")[1], 18 * 16, 26 * 16, 0);
+            this.font.write(gfx, data.lang.get("keys-both").split(".")[1], 18 * 16, 26 * 16, ((Date.now() / 300) | 0) % 2);
 
 
         }

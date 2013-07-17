@@ -73,4 +73,4 @@
     };
 
     window.data = data;
-}())
+}());
