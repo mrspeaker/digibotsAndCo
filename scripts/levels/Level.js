@@ -585,7 +585,7 @@
 
         render_GETREADY: function (gfx) {
             var c = gfx.ctx,
-                finalLevel = this.levelName === "crazy/spikesGalore"
+                finalLevel = this.levelName === "crazy/spikesGalore";
 
             c.fillStyle = "#000";
             c.fillRect(9 * 16, 9 * 16, 12 * 16, 7 * 16);
@@ -593,7 +593,6 @@
             c.strokeRect(9 * 16, 9 * 16, 12 * 16, 7 * 16);
 
             if ((Date.now() / 300 % 2) | 0 === 1) {
-
 
                 this.font.write(gfx, finalLevel ? "final battle!" : data.lang.get("get-ready"), finalLevel ? 9 * 16 : 11 * 16, 10 * 16, 1);
 
@@ -615,7 +614,8 @@
                 return;
             }
 
-            var c = gfx.ctx;
+            var c = gfx.ctx,
+                remindFast = this.levelName === "intro/getready3";
 
             // Dirt background
             c.fillStyle = "hsl(11, 30%, 40%)";
@@ -676,6 +676,15 @@
                 timeCol = (Date.now() / 300 | 0) % 2 ? 1 : 0;
             }
             this.font.write(gfx, Ω.utils.formatTime(time), 350, 16, timeCol);
+
+            if (remindFast && this.frame > 170 && this.frame < 750) {
+                c.fillStyle = "#000";
+                c.fillRect(5 * 16, 25 * 16, 21 * 16, 3 * 16);
+                if ((Date.now() / 300 % 2) | 0 === 1 ) {
+                    this.font.write(gfx, "try a button combo!", 6 * 16, 26 * 16);
+                }
+            }
+
 
         }
 

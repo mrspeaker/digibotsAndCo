@@ -17,6 +17,14 @@
             hiScoreLength: 650
         },
 
+        monster: {
+
+            huntInInit: 260,
+            huntIn: 180,
+            huntFor: 150
+
+        },
+
         levels: [
             "intro/getready",
             "intro/getready2",
@@ -27,8 +35,8 @@
             "simple/simple1",
             "level03",
             "simple/ladders",
-            "switcha",
             "simple/elevatorsAndTeleports",
+            "switcha",
             "crazy/elevatorsAndTeleports2",
 
             "simple/zigUp",

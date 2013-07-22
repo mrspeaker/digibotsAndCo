@@ -8,7 +8,7 @@
 		h: 16,
 		speed: 1.0,
 		body: null,
-		huntIn: 200,
+		huntIn: data.monster.huntInInit,
 		state: null,
 
 		sheet: new Ω.SpriteSheet("res/tiles.png", 16),
@@ -86,8 +86,8 @@
 						this.speed = 2.1;
 					}
 					this.tick_HUNTING();
-					if (this.state.count === 200) {
-						this.huntIn = 120;
+					if (this.state.count >= data.monster.huntFor) {
+						this.huntIn = data.monster.huntIn;
 						this.state.set("ROAMING");
 					}
 					break;
@@ -209,6 +209,8 @@
 
 				var dist = Ω.utils.dist(self, w);
 
+				// LOL! this doesn't work... always chases first - acc is an worker object, not a disstance
+				// but I think the glitch monsters will be way to hard core if I fix it!
 				if (dist < acc) {
 					return w;
 				}

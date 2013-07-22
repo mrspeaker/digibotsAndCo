@@ -469,6 +469,13 @@
             default:
                 frame = (Date.now() / 100 | 0) % 2;
 
+
+                if (this.dir === dirs.LEFT) {
+                    frame = (((Date.now() / 100) % 3) | 0) + 13;
+                }
+                if (this.dir === dirs.RIGHT) {
+                    frame = (((Date.now() / 100) % 3) | 0) + 10;
+                }
                 if (this.dir === dirs.UP) {
                     frame += 8;
                 }
