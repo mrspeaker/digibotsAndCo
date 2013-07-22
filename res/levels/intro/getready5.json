@@ -153,9 +153,9 @@
     {
      "equator":"17",
      "glitchAmount":"2",
-     "monsterSpawnRate":"10",
+     "monsterSpawnRate":"15",
      "monsterWhenKeysLeft":"-1",
-     "time":"25"
+     "time":"30"
     },
  "tileheight":16,
  "tilesets":[

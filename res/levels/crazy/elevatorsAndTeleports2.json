@@ -187,8 +187,8 @@
                  "type":"key",
                  "visible":true,
                  "width":0,
-                 "x":80,
-                 "y":336
+                 "x":0,
+                 "y":144
                 }, 
                 {
                  "gid":35,
@@ -232,8 +232,8 @@
                  "type":"key",
                  "visible":true,
                  "width":0,
-                 "x":416,
-                 "y":336
+                 "x":304,
+                 "y":352
                 }, 
                 {
                  "gid":35,
