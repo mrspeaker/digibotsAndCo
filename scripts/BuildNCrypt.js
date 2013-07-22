@@ -48,7 +48,7 @@
             this.initWebGL();
 
             Ω.evt.progress.push(function (remaining, max) {
-                //console.log(remaining, max);
+                document.getElementById("preload").innerHTML = (((max - remaining) / max) * 100 | 0) + "%";
             });
 
             Ω.input.bind([
@@ -114,6 +114,7 @@
             if (preloo) {
                 clearInterval(preloo);
                 document.querySelector("section").style.background = "#111";
+                document.getElementById("preload").style.display = "none";
             }
 
         },

@@ -29,3 +29,13 @@ section {
 	overflow: hidden;
 }
 
+#preload {
+	opacity: 0.4;
+	color: #fff;
+	font-family: monospace;
+	font-size: 40pt;
+	position: absolute;
+	top: 45%;
+	left: 45%;
+}
+
