@@ -38,6 +38,8 @@
         globalGlitchAmountMax: 0.01,
         globalGlitchAmount: 0.004,
 
+        shhmode: false,
+
         init: function (w, h) {
 
             var self = this;
@@ -124,6 +126,7 @@
             Ω.Sound._reset();
 
             this.globalGlitchAmount = this.globalGlitchAmountMin;
+            this.shhmode = false;
 
             this.players = [
                 {
@@ -236,7 +239,29 @@
                 this.glGLitch = (Math.random() * 20 | 0) + 1;
             }
 
+            this.shh();
 
+        },
+
+        shh: function () {
+
+            if (!(game.screen && game.screen.level)) {
+                return;
+            }
+
+            var last = this.last,
+                k = "38-38-40-40-37-39-37-39-88-32",
+                cur = Ω.input.buf.join("-");
+            if (cur !== last) {
+                this.last = cur;
+                if (cur === k) {
+                    this.shhmode = !this.shhmode;
+                    if (this.shhmode) {
+                        game.screen.level.shhon();
+                    }
+                    Ω.input.buf = [];
+                }
+            }
 
         },
 

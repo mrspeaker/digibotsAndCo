@@ -468,17 +468,16 @@
                 break;
             default:
                 frame = (Date.now() / 100 | 0) % 2;
-
-
-                if (this.dir === dirs.LEFT) {
-                    frame = (((Date.now() / 100) % 3) | 0) + 13;
-                }
-                if (this.dir === dirs.RIGHT) {
-                    frame = (((Date.now() / 100) % 3) | 0) + 10;
-                }
-                if (this.dir === dirs.UP) {
-                    frame += 8;
-                }
+                // Three frame animation
+                // if (this.dir === dirs.LEFT) {
+                //     frame = (((Date.now() / 100) % 3) | 0) + 13;
+                // }
+                // if (this.dir === dirs.RIGHT) {
+                //     frame = (((Date.now() / 100) % 3) | 0) + 10;
+                // }
+                // if (this.dir === dirs.UP) {
+                //     frame += 8;
+                // }
                 break;
             }
 
@@ -488,7 +487,19 @@
                 }
 
                 this.sheet.render(gfx, frame, 3, this.x, this.y);
+
+                if (game.shhmode) {
+                    var moff = ((Date.now() / 300 | 0) % 2) * 2;
+                    this.sheet.render(gfx, 18, 2, this.x - 9, this.y - moff);
+                    this.sheet.render(gfx, 19, 2, this.x + 7, this.y - moff);
+
+                    this.sheet.render(gfx, 16, 2, this.x - 8, this.y - 32);
+                    this.sheet.render(gfx, 17, 2, this.x + 8, this.y - 32);
+                    this.sheet.render(gfx, 16, 3, this.x - 8, this.y - 16);
+                    this.sheet.render(gfx, 17, 3, this.x + 8, this.y - 16);
+                }
             }
+
             this.particle.render(gfx);
 
         }

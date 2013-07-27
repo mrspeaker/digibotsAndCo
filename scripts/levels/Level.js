@@ -137,6 +137,17 @@
 
         },
 
+        shhon: function () {
+
+            this.effects.push(
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 8 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 10 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 12 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 14 * 16)
+            );
+
+        },
+
         makeWorker: function (json) {
 
             return new Workman(

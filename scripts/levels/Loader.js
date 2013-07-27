@@ -53,7 +53,7 @@
 
                 maps.clear = self.initMap(sheets.normal, meta.cellW, meta.cellH);
                 maps.fore = self.initMap(sheets.normal, meta.cellW, meta.cellH);
-                maps.back = new Ω.Map(sheets.normal, t.layerByName("background").get("data"));
+                maps.back = new Ω.Map(sheets.normal, t.layerByName("background").data);
                 maps.back.walkables = walkables;//[0, 70, 75];
 
                 // Set the level portal
@@ -68,12 +68,7 @@
                         tiles: [33, 34, 69]
                     };
 
-                }).get();
-                // Draw the protal: fixme - should be an entity
-                // maps.back.cells[portal.y][portal.x] = 33;
-                // maps.back.cells[portal.y][portal.x + 1] = 34;
-                // maps.back.cells[portal.y + 1][portal.x] = 69;
-                // maps.back.cells[portal.y + 1][portal.x + 1] = 34;
+                })[0];
 
                 // Set the glitchy sprite sheets
                 maps.back.normalSheet = sheets.normal;
@@ -89,7 +84,7 @@
                     raw: t,
                     meta: meta,
                     maps: maps,
-                    machines: visible(t.layerByName("machines").get("data")),
+                    machines: visible(t.layerByName("machines").data),
                     entities: {
                         workers: visible(t.objectsByName("spawn", "worker")),
                         keys: visible(t.objectsByName("keys"))

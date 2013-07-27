@@ -764,10 +764,16 @@
                 break;
             default:
                 frame = (Date.now() / 100 | 0) % 2;
-
-                if (this.dir === dirs.UP) {
-                    frame += 8;
-                }
+                // Three frame animation
+                // if (this.dir === dirs.LEFT) {
+                //     frame = (((Date.now() / 100) % 3) | 0) + 13;
+                // }
+                // if (this.dir === dirs.RIGHT) {
+                //     frame = (((Date.now() / 100) % 3) | 0) + 10;
+                // }
+                // if (this.dir === dirs.UP) {
+                //     frame += 8;
+                // }
                 break;
             }
 
@@ -777,7 +783,19 @@
                 }
 
                 this.sheet.render(gfx, frame, 3, this.x, this.y);
+
+                if (game.shhmode) {
+                    var moff = ((Date.now() / 300 | 0) % 2) * 2;
+                    this.sheet.render(gfx, 18, 2, this.x - 9, this.y - moff);
+                    this.sheet.render(gfx, 19, 2, this.x + 7, this.y - moff);
+
+                    this.sheet.render(gfx, 16, 2, this.x - 8, this.y - 32);
+                    this.sheet.render(gfx, 17, 2, this.x + 8, this.y - 32);
+                    this.sheet.render(gfx, 16, 3, this.x - 8, this.y - 16);
+                    this.sheet.render(gfx, 17, 3, this.x + 8, this.y - 16);
+                }
             }
+
             this.particle.render(gfx);
 
         }
@@ -2440,8 +2458,8 @@
                     y = 2;
 
                 if (i >= this.workers) {
-                    x = 1;
-                    y = 3;
+                    x = 7;
+                    y = 2;
                 }
                 this.sheet.render(gfx, x, y, xOff + (i * 16), 15 * 16);
             }
@@ -2543,14 +2561,12 @@
             c.fillStyle = "#000";
             c.fillRect(0, 0, gfx.w, gfx.h);
 
-
             this.images.truck.render(gfx, this.truckX, 10 * 16);
             this.images.door.render(gfx, this.truckDoorX, 10 * 16 + 14);
 
             this.workers.forEach(function (w) {
                 w.render(gfx);
             });
-
 
             this.writer2.render(gfx);
             this.writer.render(gfx);
@@ -2603,7 +2619,12 @@
         if (this.falling) {
             frame = ((Date.now() / 100 | 0) % 2) + 4;
         } else {
-            frame = (Date.now() / 100 | 0) % 2;
+            if (this.dir < 0) {
+                frame = (((Date.now() / 80) % 3) | 0) + 13;
+            }
+            else {
+                frame = (((Date.now() / 80) % 3) | 0) + 10;
+            }
         }
 
         this.screen.sheet.render(gfx, frame, 3, this.x, this.y);
@@ -3299,14 +3320,13 @@
 
         layerByName: function (name) {
 
-            var layer = Ω.utils.getByKeyValue(this.layers, "name", name);
-            return layer ? [layer] : [];
+            return Ω.utils.getByKeyValue(this.layers, "name", name);
 
         },
 
         objectByName: function (layer, name) {
 
-            return this.layerByName(layer).get("data").reduce(function(acc, el) {
+            return this.layerByName(layer).data.reduce(function(acc, el) {
 
                 // Just return one or zero matchs
                 if (acc.length === 0 && el.name === name) {
@@ -3319,7 +3339,7 @@
 
         objectsByName: function (layer, name) {
 
-            var layer = this.layerByName(layer).get("data");
+            var layer = this.layerByName(layer).data;
 
             if (!name) {
                 return layer;
@@ -3438,7 +3458,7 @@
 
                 maps.clear = self.initMap(sheets.normal, meta.cellW, meta.cellH);
                 maps.fore = self.initMap(sheets.normal, meta.cellW, meta.cellH);
-                maps.back = new Ω.Map(sheets.normal, t.layerByName("background").get("data"));
+                maps.back = new Ω.Map(sheets.normal, t.layerByName("background").data);
                 maps.back.walkables = walkables;//[0, 70, 75];
 
                 // Set the level portal
@@ -3453,12 +3473,7 @@
                         tiles: [33, 34, 69]
                     };
 
-                }).get();
-                // Draw the protal: fixme - should be an entity
-                // maps.back.cells[portal.y][portal.x] = 33;
-                // maps.back.cells[portal.y][portal.x + 1] = 34;
-                // maps.back.cells[portal.y + 1][portal.x] = 69;
-                // maps.back.cells[portal.y + 1][portal.x + 1] = 34;
+                })[0];
 
                 // Set the glitchy sprite sheets
                 maps.back.normalSheet = sheets.normal;
@@ -3474,7 +3489,7 @@
                     raw: t,
                     meta: meta,
                     maps: maps,
-                    machines: visible(t.layerByName("machines").get("data")),
+                    machines: visible(t.layerByName("machines").data),
                     entities: {
                         workers: visible(t.objectsByName("spawn", "worker")),
                         keys: visible(t.objectsByName("keys"))
@@ -3741,6 +3756,17 @@
 
             Ω.Sound._reset();
             game.players[0].score = this.players[0].score;
+
+        },
+
+        shhon: function () {
+
+            this.effects.push(
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 8 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 10 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 12 * 16),
+                new Popup("mr speaker mode!", this.font, 150, 8 * 16, 14 * 16)
+            );
 
         },
 
@@ -4340,6 +4366,8 @@
         globalGlitchAmountMax: 0.01,
         globalGlitchAmount: 0.004,
 
+        shhmode: false,
+
         init: function (w, h) {
 
             var self = this;
@@ -4350,7 +4378,7 @@
             this.initWebGL();
 
             Ω.evt.progress.push(function (remaining, max) {
-                //console.log(remaining, max);
+                document.getElementById("preload").innerHTML = (((max - remaining) / max) * 100 | 0) + "%";
             });
 
             Ω.input.bind([
@@ -4416,6 +4444,7 @@
             if (preloo) {
                 clearInterval(preloo);
                 document.querySelector("section").style.background = "#111";
+                document.getElementById("preload").style.display = "none";
             }
 
         },
@@ -4425,6 +4454,7 @@
             Ω.Sound._reset();
 
             this.globalGlitchAmount = this.globalGlitchAmountMin;
+            this.shhmode = false;
 
             this.players = [
                 {
@@ -4537,7 +4567,29 @@
                 this.glGLitch = (Math.random() * 20 | 0) + 1;
             }
 
+            this.shh();
 
+        },
+
+        shh: function () {
+
+            if (!(game.screen && game.screen.level)) {
+                return;
+            }
+
+            var last = this.last,
+                k = "38-38-40-40-37-39-37-39-88-32",
+                cur = Ω.input.buf.join("-");
+            if (cur !== last) {
+                this.last = cur;
+                if (cur === k) {
+                    this.shhmode = !this.shhmode;
+                    if (this.shhmode) {
+                        game.screen.level.shhon();
+                    }
+                    Ω.input.buf = [];
+                }
+            }
 
         },
 

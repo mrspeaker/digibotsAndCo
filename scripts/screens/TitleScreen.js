@@ -76,14 +76,12 @@
             c.fillStyle = "#000";
             c.fillRect(0, 0, gfx.w, gfx.h);
 
-
             this.images.truck.render(gfx, this.truckX, 10 * 16);
             this.images.door.render(gfx, this.truckDoorX, 10 * 16 + 14);
 
             this.workers.forEach(function (w) {
                 w.render(gfx);
             });
-
 
             this.writer2.render(gfx);
             this.writer.render(gfx);

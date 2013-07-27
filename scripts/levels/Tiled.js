@@ -26,14 +26,13 @@
 
         layerByName: function (name) {
 
-            var layer = Ω.utils.getByKeyValue(this.layers, "name", name);
-            return layer ? [layer] : [];
+            return Ω.utils.getByKeyValue(this.layers, "name", name);
 
         },
 
         objectByName: function (layer, name) {
 
-            return this.layerByName(layer).get("data").reduce(function(acc, el) {
+            return this.layerByName(layer).data.reduce(function(acc, el) {
 
                 // Just return one or zero matchs
                 if (acc.length === 0 && el.name === name) {
@@ -46,7 +45,7 @@
 
         objectsByName: function (layer, name) {
 
-            var layer = this.layerByName(layer).get("data");
+            var layer = this.layerByName(layer).data;
 
             if (!name) {
                 return layer;

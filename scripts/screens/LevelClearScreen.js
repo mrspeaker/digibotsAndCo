@@ -122,8 +122,8 @@
                     y = 2;
 
                 if (i >= this.workers) {
-                    x = 1;
-                    y = 3;
+                    x = 7;
+                    y = 2;
                 }
                 this.sheet.render(gfx, x, y, xOff + (i * 16), 15 * 16);
             }
