@@ -4,6 +4,7 @@
 		<title>DIGIBOTS &amp; CO.</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/main.css">
+		<script src="scripts/pre.js"></script>
 	</head>
 	<body>
 		<section>
@@ -11,13 +12,6 @@
 			<canvas id="board"></canvas>
 		</section>
 		<div id="preload"></div>
-
-		<script>
-			// Flashing preloader!
-			var preloo = setInterval(function () {
-				document.querySelector("section").style.background = "hsl(" + (Math.random() * 360 | 0) + ", 50%, 40%)";
-			}, 600);
-		</script>
 
 		<script type="text/vertex-shader" id="vert-post">
 			attribute vec2 a_position;
@@ -66,92 +60,6 @@
 		<script src="lib/build.js"></script>
 		<script src="scripts/build.js"></script>
 
-		<!-- lib & game -->
-		<!--
-		<script src="lib/Ω/Ω.js"></script>
-		<script src="lib/Ω/utils/base.js"></script>
-		<script src="lib/Ω/utils/utils.js"></script>
-		<script src="lib/Ω/utils/rays.js"></script>
-		<script src="lib/Ω/utils/Timer.js"></script>
-		<script src="lib/Ω/gfx.js"></script>
-		<script src="lib/Ω/input.js"></script>
-		<script src="lib/Ω/assets/Image.js"></script>
-		<script src="lib/Ω/assets/Sound.js"></script>
-		<script src="lib/Ω/cameras/Camera.js"></script>
-		<script src="lib/Ω/cameras/TrackingCamera.js"></script>
-		<script src="lib/Ω/Physics.js"></script>
-		<script src="lib/Ω/effects/Particle.js"></script>
-		<script src="lib/Ω/effects/Spring.js"></script>
-		<script src="lib/Ω/effects/Shake.js"></script>
-		<script src="lib/Ω/screens/Screen.js"></script>
-		<script src="lib/Ω/screens/Dialog.js"></script>
-		<script src="lib/Ω/SpriteSheet.js"></script>
-		<script src="lib/Ω/anim/Anims.js"></script>
-		<script src="lib/Ω/anim/Anim.js"></script>
-		<script src="lib/Ω/maps/Map.js"></script>
-		<script src="lib/Ω/maps/IsoMap.js"></script>
-		<script src="lib/Ω/maps/RayCastMap.js"></script>
-		<script src="lib/Ω/entities/Entity.js"></script>
-		<script src="lib/Ω/Game.js"></script>
-
-
-
-		<script src="scripts/data.js"></script>
-		<script src="scripts/enums.js"></script>
-		<script src="scripts/text/writer.js"></script>
-		<script src="scripts/text/font.js"></script>
-
-		<script src="scripts/blocks/blocks.js"></script>
-
-		<script src="scripts/entities/Workman.js"></script>
-		<script src="scripts/entities/GlitchMonster.js"></script>
-		<script src="scripts/entities/Key.js"></script>
-
-		<script src="scripts/machines/Machine.js"></script>
-		<script src="scripts/machines/Switch.js"></script>
-		<script src="scripts/machines/Door.js"></script>
-		<script src="scripts/machines/Elevator.js"></script>
-		<script src="scripts/machines/Spikes.js"></script>
-		<script src="scripts/machines/Teleport.js"></script>
-		<script src="scripts/entities/Portal.js"></script>
-
-		<script src="scripts/Player.js"></script>
-
-		<script src="scripts/screens/HiScoreScreen.js"></script>
-		<script src="scripts/screens/HiScoreEntryScreen.js"></script>
-		<script src="scripts/screens/LevelScreen.js"></script>
-		<script src="scripts/screens/LevelClearScreen.js"></script>
-		<script src="scripts/screens/TitleScreen.js"></script>
-		<script src="scripts/screens/IntroScreen.js"></script>
-		<script src="scripts/screens/EndScreen.js"></script>
-		<script src="scripts/screens/BootScreen.js"></script>
-
-		<script src="scripts/dialogs/PauseDialog.js"></script>
-		<script src="scripts/dialogs/ContinueDialog.js"></script>
-		<script src="scripts/dialogs/Popup.js"></script>
-
-		<script src="scripts/effects/Flash.js"></script>
-
-		<script src="scripts/levels/Tiled.js"></script>
-		<script src="scripts/levels/Loader.js"></script>
-		<script src="scripts/levels/Level.js"></script>
-
-		<script src="scripts/BuildNCrypt.js"></script>
-		-->
-
-		<script>
-
-			var game = new BuildNCrypt(30 * 16, 30 * 16);
-
-			// googlebots & co.
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-42545246-1', 'mrspeaker.net');
-			ga('send', 'pageview');
-
-		</script>
+		<script src="scripts/post.js"></script>
 	</body>
 </html>

@@ -4,6 +4,7 @@
 		<title>DIGIBOTS &amp; CO.</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="css/main.css">
+		<script src="scripts/pre.js"></script>
 	</head>
 	<body>
 		<section>
@@ -11,13 +12,6 @@
 			<canvas id="board"></canvas>
 		</section>
 		<div id="preload"></div>
-
-		<script>
-			// Flashing preloader!
-			var preloo = setInterval(function () {
-				document.querySelector("section").style.background = "hsl(" + (Math.random() * 360 | 0) + ", 50%, 40%)";
-			}, 600);
-		</script>
 
 		<script type="text/vertex-shader" id="vert-post">
 			attribute vec2 a_position;
@@ -95,10 +89,8 @@
 		<script src="lib/Ω/entities/Entity.js"></script>
 		<script src="lib/Ω/Game.js"></script>
 
-
-
-		<script src="scripts/data.js"></script>
-		<script src="scripts/enums.js"></script>
+		<script src="scripts/data/data.js"></script>
+		<script src="scripts/data/enums.js"></script>
 		<script src="scripts/text/writer.js"></script>
 		<script src="scripts/text/font.js"></script>
 
@@ -139,19 +131,6 @@
 
 		<script src="scripts/BuildNCrypt.js"></script>
 
-		<script>
-
-			var game = new BuildNCrypt(30 * 16, 30 * 16);
-
-			// googlebots & co.
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-			ga('create', 'UA-42545246-1', 'mrspeaker.net');
-			ga('send', 'pageview');
-
-		</script>
+		<script src="scripts/post.js"></script>
 	</body>
 </html>

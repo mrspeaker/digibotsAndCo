@@ -68,24 +68,26 @@
 
         load: function () {
 
+            var self = this;
+
             this.hiscores = [["erc", 4000]];
             for (var i = 0; i < 9; i++) {
                 this.hiscores.push(["...", 0]);
             }
 
-            if (!window.localStorage) {
-                return;
-            }
+            Ω.utils.storage.get(game.hiScoreKey, function (d) {
 
-            var d = window.localStorage[game.hiScoreKey];
-            if (d) {
+                if (!d) {
+                    return;
+                }
+
                 try {
                     d = JSON.parse(d);
-                    this.hiscores = d;
+                    self.hiscores = d;
                 } catch (e) {
                     console.log("error parsing hiscores");
                 }
-            }
+            });
 
             if (Ω.urlParams.mute) {
 
@@ -94,7 +96,7 @@
             }
 
             if (Ω.urlParams.clean) {
-                window.localStorage && window.localStorage.removeItem(game.hiScoreKey)
+                this.cleanHi();
             }
 
             if (Ω.urlParams.locale) {
@@ -107,6 +109,13 @@
 
 
             this.reset();
+
+        },
+
+        cleanHi: function () {
+
+            console.log("cleaning...")
+            Ω.utils.storage.remove(game.hiScoreKey);
 
         },
 

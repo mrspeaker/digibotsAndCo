@@ -134,12 +134,14 @@
         if (this.falling) {
             frame = ((Date.now() / 100 | 0) % 2) + 4;
         } else {
-            if (this.dir < 0) {
-                frame = (((Date.now() / 80) % 3) | 0) + 13;
-            }
-            else {
-                frame = (((Date.now() / 80) % 3) | 0) + 10;
-            }
+            frame = (Date.now() / 100 | 0) % 2;
+            // Three step anim
+            // if (this.dir < 0) {
+            //     frame = (((Date.now() / 80) % 3) | 0) + 13;
+            // }
+            // else {
+            //     frame = (((Date.now() / 80) % 3) | 0) + 10;
+            // }
         }
 
         this.screen.sheet.render(gfx, frame, 3, this.x, this.y);

@@ -55,19 +55,19 @@
                 fr: "do*igibi*ots & co."
             },
             "keys-nav": {
-                en: "arrow keys:.move",
+                en: inArcadeCabinet ? "joystick:.move" : "arrow keys:.move",
                 fr: "les cle: bouger"
             },
             "keys-build": {
-                en: "space bar:.build",
+                en: inArcadeCabinet ? "button 1:.build" : "space bar:.build",
                 fr: "space: construire"
             },
             "keys-erase": {
-                en: "x key:.erase",
+                en: inArcadeCabinet ? "button 2:.erase" : "x key:.erase",
                 fr: "x: effacer"
             },
             "keys-both": {
-                en: "space & x:.fast!",
+                en: inArcadeCabinet ? "both:.fast!" : "space & x:.fast!",
                 fr: "le deux: vite!"
             },
             "get-ready": {
@@ -2093,9 +2093,11 @@
         save: function () {
 
             game.hiscores.splice(this.pos, 0, [this.name, this.score]);
-            if (window.localStorage) {
-                window.localStorage[game.hiScoreKey] = JSON.stringify(game.hiscores.slice(0, 50));
-            }
+
+            Ω.utils.storage.set(
+                game.hiScoreKey,
+                JSON.stringify(game.hiscores.slice(0, 50))
+            );
 
         },
 
@@ -2619,12 +2621,14 @@
         if (this.falling) {
             frame = ((Date.now() / 100 | 0) % 2) + 4;
         } else {
-            if (this.dir < 0) {
-                frame = (((Date.now() / 80) % 3) | 0) + 13;
-            }
-            else {
-                frame = (((Date.now() / 80) % 3) | 0) + 10;
-            }
+            frame = (Date.now() / 100 | 0) % 2;
+            // Three step anim
+            // if (this.dir < 0) {
+            //     frame = (((Date.now() / 80) % 3) | 0) + 13;
+            // }
+            // else {
+            //     frame = (((Date.now() / 80) % 3) | 0) + 10;
+            // }
         }
 
         this.screen.sheet.render(gfx, frame, 3, this.x, this.y);
@@ -4396,24 +4400,26 @@
 
         load: function () {
 
+            var self = this;
+
             this.hiscores = [["erc", 4000]];
             for (var i = 0; i < 9; i++) {
                 this.hiscores.push(["...", 0]);
             }
 
-            if (!window.localStorage) {
-                return;
-            }
+            Ω.utils.storage.get(game.hiScoreKey, function (d) {
 
-            var d = window.localStorage[game.hiScoreKey];
-            if (d) {
+                if (!d) {
+                    return;
+                }
+
                 try {
                     d = JSON.parse(d);
-                    this.hiscores = d;
+                    self.hiscores = d;
                 } catch (e) {
                     console.log("error parsing hiscores");
                 }
-            }
+            });
 
             if (Ω.urlParams.mute) {
 
@@ -4422,7 +4428,7 @@
             }
 
             if (Ω.urlParams.clean) {
-                window.localStorage && window.localStorage.removeItem(game.hiScoreKey)
+                this.cleanHi();
             }
 
             if (Ω.urlParams.locale) {
@@ -4435,6 +4441,13 @@
 
 
             this.reset();
+
+        },
+
+        cleanHi: function () {
+
+            console.log("cleaning...")
+            Ω.utils.storage.remove(game.hiScoreKey);
 
         },
 

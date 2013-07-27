@@ -69,9 +69,11 @@
         save: function () {
 
             game.hiscores.splice(this.pos, 0, [this.name, this.score]);
-            if (window.localStorage) {
-                window.localStorage[game.hiScoreKey] = JSON.stringify(game.hiscores.slice(0, 50));
-            }
+
+            Ω.utils.storage.set(
+                game.hiScoreKey,
+                JSON.stringify(game.hiscores.slice(0, 50))
+            );
 
         },
 

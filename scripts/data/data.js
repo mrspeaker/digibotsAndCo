@@ -55,19 +55,19 @@
                 fr: "do*igibi*ots & co."
             },
             "keys-nav": {
-                en: "arrow keys:.move",
+                en: inArcadeCabinet ? "joystick:.move" : "arrow keys:.move",
                 fr: "les cle: bouger"
             },
             "keys-build": {
-                en: "space bar:.build",
+                en: inArcadeCabinet ? "button 1:.build" : "space bar:.build",
                 fr: "space: construire"
             },
             "keys-erase": {
-                en: "x key:.erase",
+                en: inArcadeCabinet ? "button 2:.erase" : "x key:.erase",
                 fr: "x: effacer"
             },
             "keys-both": {
-                en: "space & x:.fast!",
+                en: inArcadeCabinet ? "both:.fast!" : "space & x:.fast!",
                 fr: "le deux: vite!"
             },
             "get-ready": {
