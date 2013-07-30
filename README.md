@@ -1,7 +1,6 @@
 # Digibots & co.
 
-![DIGIBOTS Title](http://www.mrspeaker.net/images/digibots-title.jpg)
-![Game play](http://www.mrspeaker.net/images/digibots-level.jpg)
+![DIGIBOTS Title](http://www.mrspeaker.net/images/digibots-title.jpg) ![Game play](http://www.mrspeaker.net/images/digibots-level.jpg)
 
 By Mr Speaker
 
