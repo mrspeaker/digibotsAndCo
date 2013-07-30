@@ -1,5 +1,8 @@
 # Digibots & co.
 
+![DIGIBOTS Title](http://www.mrspeaker.net/images/digibots-title.jpg)
+![Game play](http://www.mrspeaker.net/images/digibots-level.jpg)
+
 By Mr Speaker
 
 Canvas & WebGL game for the french "No Future Contest" with my chosen constraint, "tous les programmeurs sont morts (le jeu doit exploiter le concept/l’esthétique du bug/glitch)".
