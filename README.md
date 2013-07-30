@@ -14,11 +14,9 @@ Canvas & WebGL game for the french "No Future Contest" with my chosen constraint
 
 ## Bugz & TODO
 
-- french version
 - players can stack and never separate
 - time is real time, not game time. don't change tabs!
-- sfx toggle in paws
-- music toggle in paws
+- sfx/tunes toggle in paws
 - pretty-fy paws
 - no ajax error handling when loading levels
 
