@@ -211,10 +211,8 @@
                 buffer = c.createBuffer(),
                 positionIndex = c.getAttribLocation(program, "a_position");
 
-
             this.timeLoc = c.getUniformLocation(program, "u_time");
             this.glitchLoc = c.getUniformLocation(program, "u_doGlitch");
-            this.pointsLoc = c.getUniformLocation(program, "points");
 
 
             c.enableVertexAttribArray(positionIndex); // Need to enable it, for some reason
@@ -285,7 +283,6 @@
 
             gl.uniform1f(this.timeLoc, Date.now() -this.startTime);
             gl.uniform1i(this.glitchLoc, this.glGLitch > 0 ? 1 : 0);
-            gl.uniform1fv(this.points, [100, 100, 200, 200]);
         },
 
         render: function () {

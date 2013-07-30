@@ -29,7 +29,6 @@
 			precision highp float;
 			uniform sampler2D u_image;
 			uniform float u_time;
-			uniform float points[4];
 			uniform int u_doGlitch;
 			varying vec2 v_texCoord;
 
@@ -43,7 +42,7 @@
 
 				vec2 pos = u_doGlitch == 0 ? v_texCoord : lineSplitter(v_texCoord, 80., 0.01);
 
-				vec4 pix = texture2D(u_image, pos);//.bgra;
+				vec4 pix = texture2D(u_image, pos);
 
 				float tv_ray_size = cos(pos.y * 512. * 2.);
 				vec4 tv = (pix * 0.9) + (pix * tv_ray_size * 0.13);
