@@ -2985,7 +2985,7 @@
                 this.font.write(gfx, "with roms you don't own is quite", left, top + 32);
                 this.font.write(gfx, "a fun thing to do with friends.", left, top + 64);
                 this.font.write(gfx, "if you are not legally entitled", left, top + 128);
-                this.font.write(gfx, "to play \"digitbots & co\", then" , left, top + 156);
+                this.font.write(gfx, "to play \"digibots & co\", then" , left, top + 156);
                 this.font.write(gfx, "that's odd. send me a tweet and" , left, top + 188);
                 this.font.write(gfx, "i'll sort that out for ya." , left, top + 220);
                 c.restore();
@@ -4352,7 +4352,7 @@
     */
 
 
-    var BuildNCrypt = Ω.Game.extend({
+    var DIGIBOTS = Ω.Game.extend({
 
         canvas: "#board",
         players: null,
@@ -4630,6 +4630,6 @@
 
     });
 
-    window.BuildNCrypt = BuildNCrypt;
+    window.DIGIBOTS = DIGIBOTS;
 
 }(Ω));

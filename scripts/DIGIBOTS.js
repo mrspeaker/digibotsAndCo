@@ -20,7 +20,7 @@
     */
 
 
-    var BuildNCrypt = Ω.Game.extend({
+    var DIGIBOTS = Ω.Game.extend({
 
         canvas: "#board",
         players: null,
@@ -298,6 +298,6 @@
 
     });
 
-    window.BuildNCrypt = BuildNCrypt;
+    window.DIGIBOTS = DIGIBOTS;
 
 }(Ω));

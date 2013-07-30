@@ -1,4 +1,4 @@
-var game = new BuildNCrypt(30 * 16, 30 * 16);
+var game = new DIGIBOTS(30 * 16, 30 * 16);
 
 if (!(window.chrome && chrome.storage)) {
 	// googlebots & co.
